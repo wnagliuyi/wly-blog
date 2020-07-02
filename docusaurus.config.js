@@ -1,7 +1,7 @@
 module.exports = {
     title: '李丰田',
     tagline: 'The tagline of my site',
-    url: 'wangliuyi.cn',
+    url: 'https://your-docusaurus-test-site.com',
     baseUrl: '/',
     favicon: 'img/favicon.ico',
     // organizationName: 'facebook', // Usually your GitHub org/user name.
