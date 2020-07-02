@@ -1,13 +1,44 @@
 name: Node.js CI
 
+# on: [push]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [12.x]
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - run: npm install
+#       - run: npm run build --if-present
+#       - name: FTP Deploy
+#         uses: SamKirkland/FTP-Deploy-Action@3.0.0
+#         with:
+#           ftp-server: 你的虚拟主机 FTP 上传地址/ftp 目录
+#           ftp-username: ${{ secrets.ftp_user }}
+#           ftp-password: ${{ secrets.ftp_pwd }}
+#           local-dir: build/
+#         env:
+#           CI: true
+
 on: [push]
 
 jobs:
-  build:
+  deploy_job:
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [12.18]
+        node-version: [12.x]
 
+    name: deploy
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -16,12 +47,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build --if-present
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@3.0.0
+      - name: deploy file
+        uses: swznd/sftp-deploy@master
         with:
-          ftp-server: 你的虚拟主机 FTP 上传地址/ftp 目录
-          ftp-username: ${{ secrets.ftp_user }}
-          ftp-password: ${{ secrets.ftp_pwd }}
-          local-dir: build/
-        env:
-          CI: true
+          host: 59.110.166.206
+          user: root
+          password: Ssscs3321
+          localPath: build/
+          remote_path: /home/wwwroot/wangliuyi.club
