@@ -1,31 +1,5 @@
 name: Node.js CI
 
-# on: [push]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     strategy:
-#       matrix:
-#         node-version: [12.x]
-
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Use Node.js ${{ matrix.node-version }}
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{ matrix.node-version }}
-#       - run: npm install
-#       - run: npm run build --if-present
-#       - name: FTP Deploy
-#         uses: SamKirkland/FTP-Deploy-Action@3.0.0
-#         with:
-#           ftp-server: 你的虚拟主机 FTP 上传地址/ftp 目录
-#           ftp-username: ${{ secrets.ftp_user }}
-#           ftp-password: ${{ secrets.ftp_pwd }}
-#           local-dir: build/
-
 on: [push]
 
 jobs:
@@ -49,9 +23,46 @@ jobs:
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: "root"
-          server: "${{ secrets.SERVER_IP }}"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: root
+          server: 59.110.166.206
+          ssh_private_key: -----BEGIN OPENSSH PRIVATE KEY-----
+            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
+            -----END OPENSSH PRIVATE KEY-----
           local_path: "build/"
           remote_path: "/home/wwwroot/wangliuyi.club"
           args: "-o ConnectTimeout=5"
