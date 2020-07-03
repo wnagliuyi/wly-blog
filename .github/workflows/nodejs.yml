@@ -20,25 +20,21 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
-      - name: deploy file
-        uses: swznd/sftp-deploy@master
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          host: 59.110.166.206
-          user: root
-          # password: Ssscs3321
-          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          localPath: build/*
-          remote_path: /home/wwwroot/wangliuyi.club
-
-      # - name: deploy file to server
-      #   uses: wlixcc/SFTP-Deploy-Action@v1.0
+          username: root
+          server: 59.110.166.206
+          # username: "username"
+          # server: "${{ secrets.SERVER_IP }}" #正式服务器地址
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: "build/*"
+          remote_path: "/home/wwwroot/wangliuyi.club"
+      # - name: deploy file
+      #   uses: swznd/sftp-deploy@master
       #   with:
-      #     username: root
-      #     server: 59.110.166.206
-      #     username: 'root'
-      #     server: 59.110.166.206 #正式服务器地址
-      #     ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     local_path: "build/*"
-      #     remote_path: "/home/wwwroot/wangliuyi.club"
-      #     args: "-o ConnectTimeout=5"
-     
+      #     host: 59.110.166.206
+      #     user: root
+      #     password: Ssscs3321
+      #     localPath: build/
+      #     remote_path: /home/wwwroot/wangliuyi.club
