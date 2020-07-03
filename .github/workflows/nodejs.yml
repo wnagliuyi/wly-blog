@@ -25,9 +25,9 @@ jobs:
         with:
           # username: root
           # server: 59.110.166.206
-          username: "root"
-          server: "${{ secrets.SERVER_IP }}" #正式服务器地址
-          ssh_private_key: "{{secrets.SSH_PRIVATE_KEY}}"
+          username: 'root'
+          server: '${{ secrets.SERVER_IP }}' #正式服务器地址
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: "build/*"
           remote_path: "/home/wwwroot/wangliuyi.club"
           args: "-o ConnectTimeout=5"
