@@ -25,8 +25,6 @@ name: Node.js CI
 #           ftp-username: ${{ secrets.ftp_user }}
 #           ftp-password: ${{ secrets.ftp_pwd }}
 #           local-dir: build/
-#         env:
-#           CI: true
 
 on: [push]
 
@@ -48,17 +46,15 @@ jobs:
       - run: npm install
       - run: npm run build --if-present
 
-     - name: deploy file to server
+      - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: 'root'
-          server: '${{ secrets.SERVER_IP }}'
+          username: "root"
+          server: "${{ secrets.SERVER_IP }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: 'build/'
-          remote_path: '/home/wwwroot/wangliuyi.club'
-          args: '-o ConnectTimeout=5'
-
-
+          local_path: "build/"
+          remote_path: "/home/wwwroot/wangliuyi.club"
+          args: "-o ConnectTimeout=5"
       # - name: deploy file
       #   uses: swznd/sftp-deploy@master
       #   with:
